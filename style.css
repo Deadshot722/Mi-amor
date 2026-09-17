@@ -918,7 +918,6 @@ body {
 
 }
 
-
 /* ================================================= */
 /* PÁGINA DE LA PROPUESTA */
 /* ================================================= */
@@ -939,40 +938,56 @@ body {
 
     align-items: center;
 
-    background:
+    text-align: center;
 
+    background:
         linear-gradient(
             135deg,
             #ffe6ee,
             #ffc5d6
         );
 
-    font-family:
-        Arial, sans-serif;
+    font-family: Arial, sans-serif;
 
     overflow-y: auto;
+
 }
 
 
-.container-propuesta {
+/* ============================= */
+/* CONTENEDOR */
+/* ============================= */
 
-    text-align: center;
+.container-propuesta {
 
     width: 100%;
 
     max-width: 700px;
 
-    position: relative;
+    display: flex;
 
-    padding: 20px 0;
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
 }
 
 
 /* ============================= */
-/* IMAGEN DE LA PREGUNTA */
+/* IMAGEN */
 /* ============================= */
 
 #gifContainer {
+
+    width: 100%;
 
     display: flex;
 
@@ -980,23 +995,27 @@ body {
 
     align-items: center;
 
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+
 }
 
 
 #gifContainerImg {
 
-    width: min(320px, 65vw);
+    width: min(400px, 75vw);
 
-    height: 180px;
+    height: 250px;
 
     object-fit: contain;
+
+    display: block;
 
     border-radius: 25px;
 
     box-shadow:
         0 10px 30px
-        rgba(0,0,0,0.2);
+        rgba(0, 0, 0, 0.20);
+
 }
 
 
@@ -1011,18 +1030,24 @@ body {
 
     font-size:
         clamp(
-            2.5rem,
+            2.8rem,
             8vw,
             5rem
         );
 
     color: #e94f75;
 
-    margin: 15px 0;
+    text-align: center;
+
+    margin:
+        10px 0 25px;
+
+    line-height: 1.15;
 
     text-shadow:
         2px 2px 5px
-        rgba(0,0,0,0.15);
+        rgba(0, 0, 0, 0.15);
+
 }
 
 
@@ -1040,92 +1065,108 @@ body {
 
     flex-wrap: wrap;
 
-    gap: 10px;
+    gap: 15px;
 
-    margin-top: 15px;
+    width: 100%;
+
+    margin-top: 10px;
+
 }
 
+
+/* ESTILO GENERAL */
 
 .botones button {
 
     padding:
-        12px 25px;
+        12px 28px;
 
     font-size: 18px;
 
-    margin: 10px;
+    font-weight: bold;
+
+    margin: 5px;
 
     cursor: pointer;
-
-    border-radius: 12px;
 
     color: white;
 
     border: 2px solid #ffc0cb;
 
+    border-radius: 12px;
+
     transition:
-        background-color 0.2s,
-        transform 0.2s;
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
 }
 
+
+/* ============================= */
+/* BOTÓN SÍ */
+/* ============================= */
 
 #siBtn {
 
     background-color:
-        #ff5c8a;
+        #009705;
+
+    box-shadow:
+        0 5px 12px
+        rgba(0, 151, 5, 0.25);
+
 }
 
 
 #siBtn:hover {
 
     background-color:
-        #d83d69;
+        #053a03;
 
     transform:
-        scale(1.05);
+        scale(1.08);
+
+    box-shadow:
+        0 7px 18px
+        rgba(0, 80, 0, 0.30);
+
 }
 
+
+/* ============================= */
+/* BOTÓN NO */
+/* ============================= */
 
 #noBtn {
 
     background-color:
-        #ff7b8e;
+        #ff5733;
+
+    box-shadow:
+        0 5px 12px
+        rgba(255, 87, 51, 0.25);
+
 }
 
 
 #noBtn:hover {
 
     background-color:
-        #c94b5e;
-}
+        #641e0d;
 
-
-/* ============================= */
-/* IMAGEN HELLO KITTY FINAL */
-/* ============================= */
-
-.imagen-hello-kitty {
-
-    width: min(300px, 65vw);
-
-    height: 180px;
-
-    object-fit: contain;
-
-    display: block;
-
-    margin: 15px auto 0;
-
-    border-radius: 25px;
+    transform:
+        scale(1.05);
 
     box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.2);
+        0 7px 18px
+        rgba(100, 30, 13, 0.30);
+
 }
 
 
 /* ============================= */
-/* MENSAJE FINAL */
+/* PANTALLA FINAL */
 /* ============================= */
 
 .bg-rosa {
@@ -1136,17 +1177,25 @@ body {
             #ffd5e1,
             #ffb6c9
         );
+
 }
 
 
 .mensaje-final {
 
+    width: 100%;
+
+    max-width: 700px;
+
     padding: 20px;
+
+    box-sizing: border-box;
+
+    text-align: center;
 
     animation:
         aparecer 0.8s ease;
 
-    text-align: center;
 }
 
 
@@ -1159,12 +1208,18 @@ body {
 
     font-size:
         clamp(
-            2.5rem,
+            2.8rem,
             8vw,
             4.5rem
         );
 
-    margin: 10px;
+    margin:
+        20px 0;
+
+    text-shadow:
+        2px 2px 5px
+        rgba(0, 0, 0, 0.15);
+
 }
 
 
@@ -1177,39 +1232,41 @@ body {
     font-size: 1.5rem;
 
     color: #555;
+
+    line-height: 1.5;
+
 }
 
 
-.corazones-finales {
-
-    font-size: 35px;
-
-    animation:
-        latido-loader 1s infinite;
-}
-
-
-/* Imagen que aparece después de presionar SÍ */
+/* ============================= */
+/* IMAGEN FINAL */
+/* ============================= */
 
 .hello-final {
 
-    width: min(280px, 60vw);
+    width: min(400px, 75vw);
 
-    height: 180px;
+    height: 250px;
 
     object-fit: contain;
 
     display: block;
 
-    margin: 15px auto;
+    margin:
+        0 auto 20px;
 
-    border-radius: 20px;
+    border-radius: 25px;
 
     box-shadow:
         0 10px 30px
-        rgba(0,0,0,0.2);
+        rgba(0, 0, 0, 0.20);
+
 }
 
+
+/* ============================= */
+/* ANIMACIÓN */
+/* ============================= */
 
 @keyframes aparecer {
 
@@ -1219,6 +1276,7 @@ body {
 
         transform:
             scale(0.8);
+
     }
 
     to {
@@ -1227,92 +1285,48 @@ body {
 
         transform:
             scale(1);
+
     }
 
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* CELULAR */
-/* ============================= */
+/* ================================================= */
 
 @media (max-width: 768px) {
 
-    .main-content {
+    .pagina-propuesta {
 
-        transform:
-            translateY(-5vh);
+        padding: 15px;
+
     }
 
 
-    .main-content h1 {
+    .container-propuesta {
 
-        font-size: 2.9rem;
+        padding: 10px;
+
     }
 
-
-    .envoltura-sobre {
-
-        width: 280px;
-
-        height: 193px;
-    }
-
-
-    .contenido {
-
-        padding-right: 5px;
-    }
-
-
-    .contenido .saludo {
-
-        font-size: 1.6rem;
-    }
-
-
-    .contenido .cuerpo {
-
-        font-size: 1.1rem;
-
-        line-height: 1.4;
-    }
-
-
-    .contenido .firma {
-
-        font-size: 1.6rem;
-
-        text-align: center;
-    }
-
-
-    .boton-carta {
-
-        font-size: 0.95rem;
-
-        padding:
-            12px 18px;
-    }
-
-
-    /* Imagen de la pregunta */
 
     #gifContainerImg {
 
-        width: 75vw;
+        width: 80vw;
 
-        height: 150px;
+        height: 190px;
 
-        object-fit: contain;
     }
 
 
     .container-propuesta h1 {
 
-        font-size: 2.7rem;
+        font-size: 3rem;
 
-        margin: 10px 0;
+        margin:
+            10px 0 20px;
+
     }
 
 
@@ -1320,48 +1334,46 @@ body {
 
         gap: 5px;
 
-        margin-top: 10px;
     }
 
 
     .botones button {
 
-        font-size: 16px;
+        font-size: 17px;
 
         padding:
-            10px 20px;
+            11px 24px;
+
     }
 
 
-    /* Imagen de la pantalla después de SÍ */
-
     .hello-final {
 
-        width: 70vw;
+        width: 80vw;
 
-        height: 150px;
+        height: 190px;
 
-        object-fit: contain;
-
-        margin: 10px auto;
     }
 
 
     .mensaje-final {
 
         padding: 10px;
+
     }
 
 
     .mensaje-final h2 {
 
-        font-size: 2.7rem;
+        font-size: 3rem;
+
     }
 
 
     .mensaje-final p {
 
-        font-size: 1.2rem;
+        font-size: 1.25rem;
+
     }
 
 }
