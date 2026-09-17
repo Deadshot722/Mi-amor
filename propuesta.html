@@ -1,101 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Una pregunta para ti 💗</title>
-    <link rel="stylesheet" href="./style.css">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Una pregunta para ti ❤️</title>
+
+    <link rel="stylesheet" href="estilo.css">
+
 </head>
 
 <body class="pagina-propuesta">
 
-    <div class="contenedor-propuesta">
+    <div class="container-propuesta">
 
-        <img
-            id="gifContainerImg"
-            src="./imagenes/hello1.jpg"
-            alt="Hello Kitty"
-            class="imagen-hello-kitty"
-        >
+        <!-- IMAGEN DE LA PREGUNTA -->
+        <div id="gifContainer">
 
-        <h1 id="pregunta">¿Quieres ser mi novia? 💗</h1>
-
-        <div class="botones">
-            <button id="siBtn" class="boton-si">Sí 💗</button>
-            <button id="noBtn" class="boton-no">No</button>
-        </div>
-
-        <div id="mensajeFinal" class="mensaje-final">
             <img
-                src="./imagenes/hello6.jpg"
+                id="gifContainerImg"
+                src="imágenes/hello1.jpg"
                 alt="Hello Kitty"
-                class="imagen-final"
             >
 
-            <h2>¡Sabía que dirías que sí! 💗</h2>
-            <p>
-                Te quiero muchísimo, mi niña.
-                <br>
-                Hoy comienza oficialmente nuestro aniversario. ❤️
-            </p>
+        </div>
+
+
+        <!-- PREGUNTA -->
+        <h1>
+            ¿Quieres ser mi novia? ❤️
+        </h1>
+
+
+        <!-- BOTONES -->
+        <div class="botones">
+
+            <button
+                id="siBtn"
+                onclick="window.location.href='dijosi.html'">
+                Sí ❤️
+            </button>
+
+            <button
+                id="noBtn">
+                No
+            </button>
+
         </div>
 
     </div>
 
+
     <script>
-        const siBtn = document.getElementById("siBtn");
+
         const noBtn = document.getElementById("noBtn");
-        const pregunta = document.getElementById("pregunta");
-        const gifContainerImg = document.getElementById("gifContainerImg");
-        const mensajeFinal = document.getElementById("mensajeFinal");
+        const gif = document.getElementById("gifContainerImg");
 
-        const noMessages = [
-            "¿Segura? 🥺",
-            "Piénsalo otra vez 👉👈",
-            "¿De verdad? 😭",
-            "No me hagas esto 🥺",
-            "Última oportunidad 😭💗"
+        let contador = 0;
+
+        const imagenes = [
+            "imágenes/hello1.jpg",
+            "imágenes/hello2.jpg",
+            "imágenes/hello3.jpg",
+            "imágenes/hello4.jpg",
+            "imágenes/hello5.jpg",
+            "imágenes/hello6.jpg"
         ];
 
-        const sadImages = [
-            "./imagenes/hello2.jpg",
-            "./imagenes/hello3.jpg",
-            "./imagenes/hello4.jpg",
-            "./imagenes/hello5.jpg"
-        ];
+        noBtn.addEventListener("click", function () {
 
-        let noCount = 0;
+            contador++;
 
-        noBtn.addEventListener("click", () => {
+            if (contador < imagenes.length) {
 
-            if (noCount < noMessages.length) {
-                noBtn.textContent = noMessages[noCount];
+                gif.src = imagenes[contador];
+
+            } else {
+
+                gif.src = imagenes[imagenes.length - 1];
+
             }
 
-            if (noCount < sadImages.length) {
-                gifContainerImg.src = sadImages[noCount];
-            }
-
-            noCount++;
-
-            const currentSize = parseFloat(
-                window.getComputedStyle(siBtn).fontSize
-            );
-
-            siBtn.style.fontSize = (currentSize + 4) + "px";
-            siBtn.style.padding = "14px 28px";
         });
 
-        siBtn.addEventListener("click", () => {
-
-            pregunta.style.display = "none";
-            noBtn.style.display = "none";
-            siBtn.style.display = "none";
-
-            gifContainerImg.style.display = "none";
-            mensajeFinal.style.display = "block";
-        });
     </script>
 
 </body>
+
 </html>

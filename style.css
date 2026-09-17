@@ -947,9 +947,10 @@ body {
             #ffc5d6
         );
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial, sans-serif;
 
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 
@@ -962,8 +963,14 @@ body {
     max-width: 700px;
 
     position: relative;
+
+    padding: 20px 0;
 }
 
+
+/* ============================= */
+/* IMAGEN DE LA PREGUNTA */
+/* ============================= */
 
 #gifContainer {
 
@@ -973,17 +980,17 @@ body {
 
     align-items: center;
 
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 
 #gifContainerImg {
 
-    width: min(420px, 80vw);
+    width: min(320px, 65vw);
 
-    height: 280px;
+    height: 180px;
 
-    object-fit: cover;
+    object-fit: contain;
 
     border-radius: 25px;
 
@@ -992,6 +999,10 @@ body {
         rgba(0,0,0,0.2);
 }
 
+
+/* ============================= */
+/* PREGUNTA */
+/* ============================= */
 
 .container-propuesta h1 {
 
@@ -1007,13 +1018,17 @@ body {
 
     color: #e94f75;
 
-    margin: 20px 0;
+    margin: 15px 0;
 
     text-shadow:
         2px 2px 5px
         rgba(0,0,0,0.15);
 }
 
+
+/* ============================= */
+/* BOTONES */
+/* ============================= */
 
 .botones {
 
@@ -1027,7 +1042,7 @@ body {
 
     gap: 10px;
 
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 
@@ -1085,17 +1100,21 @@ body {
 }
 
 
+/* ============================= */
+/* IMAGEN HELLO KITTY FINAL */
+/* ============================= */
+
 .imagen-hello-kitty {
 
-    width: min(400px, 80vw);
+    width: min(300px, 65vw);
 
-    max-height: 300px;
+    height: 180px;
 
-    object-fit: cover;
+    object-fit: contain;
 
     display: block;
 
-    margin: 0 auto 20px;
+    margin: 15px auto 0;
 
     border-radius: 25px;
 
@@ -1126,6 +1145,8 @@ body {
 
     animation:
         aparecer 0.8s ease;
+
+    text-align: center;
 }
 
 
@@ -1168,17 +1189,21 @@ body {
 }
 
 
+/* Imagen que aparece después de presionar SÍ */
+
 .hello-final {
 
-    width: min(350px, 75vw);
+    width: min(280px, 60vw);
 
-    height: 220px;
+    height: 180px;
 
-    object-fit: cover;
+    object-fit: contain;
 
-    border-radius: 25px;
+    display: block;
 
-    margin-top: 15px;
+    margin: 15px auto;
+
+    border-radius: 20px;
 
     box-shadow:
         0 10px 30px
@@ -1271,23 +1296,31 @@ body {
     }
 
 
+    /* Imagen de la pregunta */
+
     #gifContainerImg {
 
-        width: 85vw;
+        width: 75vw;
 
-        height: 230px;
+        height: 150px;
+
+        object-fit: contain;
     }
 
 
     .container-propuesta h1 {
 
-        font-size: 3rem;
+        font-size: 2.7rem;
+
+        margin: 10px 0;
     }
 
 
     .botones {
 
         gap: 5px;
+
+        margin-top: 10px;
     }
 
 
@@ -1299,5 +1332,36 @@ body {
             10px 20px;
     }
 
-}
 
+    /* Imagen de la pantalla después de SÍ */
+
+    .hello-final {
+
+        width: 70vw;
+
+        height: 150px;
+
+        object-fit: contain;
+
+        margin: 10px auto;
+    }
+
+
+    .mensaje-final {
+
+        padding: 10px;
+    }
+
+
+    .mensaje-final h2 {
+
+        font-size: 2.7rem;
+    }
+
+
+    .mensaje-final p {
+
+        font-size: 1.2rem;
+    }
+
+}
