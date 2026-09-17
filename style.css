@@ -1,0 +1,1304 @@
+
+:root {
+
+    --rosa: #ffb6c9;
+    --rosa-claro: #ffe5ec;
+    --rosa-fuerte: #e94f75;
+    --rojo: #cf425c;
+
+    --color-sobre-cuerpo: #ffdde1;
+    --color-sobre-solapa: #eeb7c2;
+    --color-sobre-solapa-superior: #fbe2e7;
+
+    --color-carta: #fffafa;
+
+    --color-texto: #3a3a3a;
+
+    --fuente-titulo: 'Dancing Script', cursive;
+    --fuente-carta: 'Cormorant Garamond', serif;
+
+    --duracion-apertura: 1.7s;
+}
+
+
+/* ============================= */
+/* PANTALLA DE CARGA */
+/* ============================= */
+
+#loader {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #fff5f7;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    z-index: 1000;
+
+    transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease;
+}
+
+
+#loader.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+}
+
+
+.loader-icon {
+
+    font-size: 80px;
+
+    color: var(--rojo);
+
+    animation:
+        latido-loader 1s infinite;
+}
+
+
+@keyframes latido-loader {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+
+.progress-bar-container {
+
+    width: 250px;
+
+    height: 15px;
+
+    background-color: #e0e0e0;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    margin-top: 20px;
+
+    box-shadow:
+        inset 0 1px 3px
+        rgba(0,0,0,0.1);
+}
+
+
+.progress-bar {
+
+    width: 0%;
+
+    height: 100%;
+
+    background-color: var(--rojo);
+
+    border-radius: 10px;
+
+    transition:
+        width 0.3s ease;
+}
+
+
+#progress-percentage {
+
+    margin-top: 10px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 1rem;
+
+    color: #555;
+}
+
+
+/* ============================= */
+/* PÁGINA DE LA CARTA */
+/* ============================= */
+
+body {
+
+    margin: 0;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 100vh;
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            #ffeef4,
+            #f6bfd0
+        );
+
+    overflow: hidden;
+
+    user-select: none;
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+.main-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.main-content h1 {
+
+    font-family:
+        var(--fuente-titulo);
+
+    font-size:
+        clamp(2.5rem, 10vw, 5rem);
+
+    color: #f15b8d;
+
+    text-shadow:
+        3px 3px 10px
+        rgba(0,0,0,0.25);
+
+    text-align: center;
+
+    margin-bottom: 40px;
+
+    line-height: 1.1;
+}
+
+
+.contenedor {
+
+    perspective: 1500px;
+}
+
+
+.envoltura-sobre {
+
+    position: relative;
+
+    width: 320px;
+    height: 220px;
+
+    cursor: pointer;
+
+    filter:
+        drop-shadow(
+            0 20px 25px
+            rgba(0,0,0,0.25)
+        );
+
+    animation:
+        latido 2.5s
+        cubic-bezier(0.4, 0, 0.2, 1)
+        infinite;
+}
+
+
+.envoltura-sobre.abierto,
+.envoltura-sobre.cerrando {
+
+    animation: none;
+}
+
+
+@keyframes latido {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.07);
+    }
+
+}
+
+
+.sobre {
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    background-color:
+        var(--color-sobre-cuerpo);
+
+    border-radius: 15px;
+
+    box-shadow:
+        inset 0 0 30px
+        rgba(0,0,0,0.1);
+}
+
+
+.sobre::before {
+
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            225deg,
+            var(--color-sobre-cuerpo) 50%,
+            var(--color-sobre-solapa) 50%
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 0.5s
+        calc(var(--duracion-apertura) * 0.5)
+        ease;
+}
+
+
+.envoltura-sobre.abierto
+.sobre::before {
+
+    opacity: 1;
+}
+
+
+.solapa {
+
+    position: absolute;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.7s
+        cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.solapa-superior {
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 55%;
+
+    background-color:
+        var(--color-sobre-solapa-superior);
+
+    clip-path:
+        polygon(0 0, 100% 0, 50% 100%);
+
+    border-radius:
+        15px 15px 0 0;
+
+    transform-origin: top;
+
+    z-index: 6;
+}
+
+
+.solapa-izquierda {
+
+    top: 0;
+    left: 0;
+
+    width: 52%;
+    height: 100%;
+
+    background-color:
+        var(--color-sobre-solapa);
+
+    clip-path:
+        polygon(0 0, 100% 50%, 0 100%);
+
+    border-radius:
+        15px 0 0 15px;
+
+    transform-origin: left;
+
+    z-index: 5;
+
+    transition-delay:
+        0.35s;
+}
+
+
+.solapa-derecha {
+
+    top: 0;
+    right: 0;
+
+    width: 52%;
+    height: 100%;
+
+    background-color:
+        var(--color-sobre-solapa);
+
+    clip-path:
+        polygon(100% 0, 0 50%, 100% 100%);
+
+    border-radius:
+        0 15px 15px 0;
+
+    transform-origin: right;
+
+    z-index: 5;
+
+    transition-delay:
+        0.35s;
+}
+
+
+/* ============================= */
+/* CORAZÓN DEL SOBRE */
+/* ============================= */
+
+.corazon {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 30px;
+    height: 30px;
+
+    background-color:
+        var(--rojo);
+
+    transform:
+        translate(-50%, -70%)
+        rotate(45deg);
+
+    z-index: 10;
+
+    transition:
+        transform 0.5s 0.2s ease-out,
+        opacity 0.5s 0.2s ease-out;
+}
+
+
+.corazon::before,
+.corazon::after {
+
+    content: '';
+
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    background-color:
+        inherit;
+
+    border-radius: 50%;
+}
+
+
+.corazon::before {
+
+    top: -15px;
+    left: 0;
+}
+
+
+.corazon::after {
+
+    top: 0;
+    left: -15px;
+}
+
+
+.corazon:hover {
+
+    animation:
+        temblor-corazon
+        0.4s linear infinite;
+}
+
+
+@keyframes temblor-corazon {
+
+    0% {
+        transform:
+            translate(-50%, -70%)
+            rotate(45deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -70%)
+            rotate(45deg)
+            scale(1.2);
+    }
+
+    100% {
+        transform:
+            translate(-50%, -70%)
+            rotate(45deg)
+            scale(1);
+    }
+
+}
+
+
+/* ============================= */
+/* CARTA */
+/* ============================= */
+
+.carta {
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    width: 320px;
+    height: 220px;
+
+    transform:
+        translate(-50%, -40%)
+        scale(1);
+
+    opacity: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,0.93),
+            rgba(255,245,248,0.95)
+        );
+
+    border-radius: 15px;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.25);
+}
+
+
+.envoltura-sobre.abierto
+.carta {
+
+    animation:
+        animacion-abrir-carta
+        var(--duracion-apertura)
+        0.7s
+        forwards
+        cubic-bezier(
+            0.18,
+            0.89,
+            0.32,
+            1.28
+        );
+
+    pointer-events: auto;
+}
+
+
+.envoltura-sobre.cerrando
+.carta {
+
+    animation:
+        animacion-cerrar-carta
+        1.2s
+        forwards
+        cubic-bezier(
+            0.6,
+            -0.28,
+            0.74,
+            0.05
+        );
+}
+
+
+.envoltura-sobre.abierto
+.solapa-superior {
+
+    transform:
+        rotateX(180deg);
+
+    z-index: 0;
+}
+
+
+.envoltura-sobre.abierto
+.solapa-izquierda {
+
+    transform:
+        rotateY(180deg);
+
+    z-index: 0;
+}
+
+
+.envoltura-sobre.abierto
+.solapa-derecha {
+
+    transform:
+        rotateY(-180deg);
+
+    z-index: 0;
+}
+
+
+.envoltura-sobre.abierto
+.corazon {
+
+    transform:
+        translateY(-200px)
+        scale(0.5);
+
+    opacity: 0;
+}
+
+
+@keyframes animacion-abrir-carta {
+
+    0% {
+
+        transform:
+            translate(-50%, -40%)
+            scale(1);
+
+        opacity: 0;
+
+        z-index: 1;
+
+    }
+
+    40% {
+
+        transform:
+            translate(-50%, -100%)
+            scale(1.1);
+
+        opacity: 1;
+
+        z-index: 20;
+
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.2);
+
+        opacity: 1;
+
+        z-index: 30;
+
+        width: 90vw;
+        height: 90vh;
+
+        max-width: 700px;
+        max-height: 900px;
+
+        top: 50%;
+    }
+
+}
+
+
+@keyframes animacion-cerrar-carta {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.2);
+
+        opacity: 1;
+
+        z-index: 30;
+
+        width: 90vw;
+        height: 90vh;
+
+        max-width: 700px;
+        max-height: 900px;
+
+        top: 50%;
+    }
+
+    60% {
+
+        transform:
+            translate(-50%, -100%)
+            scale(1.1);
+
+        opacity: 1;
+
+        z-index: 20;
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -40%)
+            scale(1);
+
+        opacity: 0;
+
+        z-index: 1;
+
+        width: 320px;
+        height: 220px;
+    }
+
+}
+
+
+/* ============================= */
+/* TEXTO DE LA CARTA */
+/* ============================= */
+
+.contenido {
+
+    color: var(--color-texto);
+
+    font-family:
+        var(--fuente-carta);
+
+    width: 100%;
+    height: 100%;
+
+    overflow: auto;
+
+    padding-right: 15px;
+
+    scrollbar-width: none;
+}
+
+
+.contenido::-webkit-scrollbar {
+
+    display: none;
+}
+
+
+.fecha {
+
+    display: block;
+
+    text-align: right;
+
+    font-size: 1.1rem;
+
+    font-style: italic;
+
+    color: #888;
+
+    margin-bottom: 20px;
+}
+
+
+.saludo {
+
+    font-size: 2.2rem;
+
+    margin-bottom: 15px;
+
+    font-weight: 600;
+}
+
+
+.cuerpo {
+
+    font-size: 1.6rem;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+
+/* ============================= */
+/* BOTÓN DE LA CARTA */
+/* ============================= */
+
+.boton-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin:
+        30px 0;
+}
+
+
+.boton-carta {
+
+    display: inline-block;
+
+    padding:
+        14px 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff7197,
+            #e94f75
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 30px;
+
+    font-family:
+        Arial, sans-serif;
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 5px 15px
+        rgba(233,79,117,0.3);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.boton-carta:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(233,79,117,0.4);
+}
+
+
+.bloque-firma {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: 30px;
+}
+
+
+.firma {
+
+    font-size: 2.5rem;
+
+    text-align: right;
+
+    color: var(--rojo);
+
+    margin: 0;
+}
+
+
+/* ============================= */
+/* CORAZONES */
+/* ============================= */
+
+.corazon-magico {
+
+    position: fixed;
+
+    font-size: var(--fs);
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    animation:
+        corazon-magico-anim
+        var(--dur)
+        ease-out
+        forwards;
+
+    z-index: 100;
+}
+
+
+@keyframes corazon-magico-anim {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(0,0)
+            scale(0.8)
+            rotate(0deg);
+    }
+
+    25% {
+
+        opacity: 1;
+
+        transform:
+            translate(
+                var(--x-mid),
+                var(--y-mid)
+            )
+            scale(1.8)
+            rotate(var(--r-mid));
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                var(--x-end),
+                var(--y-end)
+            )
+            scale(var(--s-end))
+            rotate(var(--r-end));
+    }
+
+}
+
+
+/* ================================================= */
+/* PÁGINA DE LA PROPUESTA */
+/* ================================================= */
+
+.pagina-propuesta {
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ffe6ee,
+            #ffc5d6
+        );
+
+    font-family: Arial, sans-serif;
+
+    overflow: hidden;
+}
+
+
+.container-propuesta {
+
+    text-align: center;
+
+    width: 100%;
+
+    max-width: 700px;
+
+    position: relative;
+}
+
+
+#gifContainer {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+#gifContainerImg {
+
+    width: min(420px, 80vw);
+
+    height: 280px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.2);
+}
+
+
+.container-propuesta h1 {
+
+    font-family:
+        var(--fuente-titulo);
+
+    font-size:
+        clamp(
+            2.5rem,
+            8vw,
+            5rem
+        );
+
+    color: #e94f75;
+
+    margin: 20px 0;
+
+    text-shadow:
+        2px 2px 5px
+        rgba(0,0,0,0.15);
+}
+
+
+.botones {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+.botones button {
+
+    padding:
+        12px 25px;
+
+    font-size: 18px;
+
+    margin: 10px;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+
+    color: white;
+
+    border: 2px solid #ffc0cb;
+
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+}
+
+
+#siBtn {
+
+    background-color:
+        #ff5c8a;
+}
+
+
+#siBtn:hover {
+
+    background-color:
+        #d83d69;
+
+    transform:
+        scale(1.05);
+}
+
+
+#noBtn {
+
+    background-color:
+        #ff7b8e;
+}
+
+
+#noBtn:hover {
+
+    background-color:
+        #c94b5e;
+}
+
+
+.imagen-hello-kitty {
+
+    width: min(400px, 80vw);
+
+    max-height: 300px;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: 0 auto 20px;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.2);
+}
+
+
+/* ============================= */
+/* MENSAJE FINAL */
+/* ============================= */
+
+.bg-rosa {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd5e1,
+            #ffb6c9
+        );
+}
+
+
+.mensaje-final {
+
+    padding: 20px;
+
+    animation:
+        aparecer 0.8s ease;
+}
+
+
+.mensaje-final h2 {
+
+    font-family:
+        var(--fuente-titulo);
+
+    color: #d83d69;
+
+    font-size:
+        clamp(
+            2.5rem,
+            8vw,
+            4.5rem
+        );
+
+    margin: 10px;
+}
+
+
+.mensaje-final p {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 1.5rem;
+
+    color: #555;
+}
+
+
+.corazones-finales {
+
+    font-size: 35px;
+
+    animation:
+        latido-loader 1s infinite;
+}
+
+
+.hello-final {
+
+    width: min(350px, 75vw);
+
+    height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    margin-top: 15px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.2);
+}
+
+
+@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.8);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+}
+
+
+/* ============================= */
+/* CELULAR */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .main-content {
+
+        transform:
+            translateY(-5vh);
+    }
+
+
+    .main-content h1 {
+
+        font-size: 2.9rem;
+    }
+
+
+    .envoltura-sobre {
+
+        width: 280px;
+
+        height: 193px;
+    }
+
+
+    .contenido {
+
+        padding-right: 5px;
+    }
+
+
+    .contenido .saludo {
+
+        font-size: 1.6rem;
+    }
+
+
+    .contenido .cuerpo {
+
+        font-size: 1.1rem;
+
+        line-height: 1.4;
+    }
+
+
+    .contenido .firma {
+
+        font-size: 1.6rem;
+
+        text-align: center;
+    }
+
+
+    .boton-carta {
+
+        font-size: 0.95rem;
+
+        padding:
+            12px 18px;
+    }
+
+
+    #gifContainerImg {
+
+        width: 85vw;
+
+        height: 230px;
+    }
+
+
+    .container-propuesta h1 {
+
+        font-size: 3rem;
+    }
+
+
+    .botones {
+
+        gap: 5px;
+    }
+
+
+    .botones button {
+
+        font-size: 16px;
+
+        padding:
+            10px 20px;
+    }
+
+}
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una pregunta para ti 💗</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="pagina-propuesta">
+
+    <div class="contenedor-propuesta">
+
+        <img
+            id="gifContainerImg"
+            src="./imagenes/hello1.jpg"
+            alt="Hello Kitty"
+            class="imagen-hello-kitty"
+        >
+
+        <h1 id="pregunta">¿Quieres ser mi novia? 💗</h1>
+
+        <div class="botones">
+            <button id="siBtn" class="boton-si">Sí 💗</button>
+            <button id="noBtn" class="boton-no">No</button>
+        </div>
+
+        <div id="mensajeFinal" class="mensaje-final">
+            <img
+                src="./imagenes/hello6.jpg"
+                alt="Hello Kitty"
+                class="imagen-final"
+            >
+
+            <h2>¡Sabía que dirías que sí! 💗</h2>
+            <p>
+                Te quiero muchísimo, mi niña.
+                <br>
+                Hoy comienza oficialmente nuestro aniversario. ❤️
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        const siBtn = document.getElementById("siBtn");
+        const noBtn = document.getElementById("noBtn");
+        const pregunta = document.getElementById("pregunta");
+        const gifContainerImg = document.getElementById("gifContainerImg");
+        const mensajeFinal = document.getElementById("mensajeFinal");
+
+        const noMessages = [
+            "¿Segura? 🥺",
+            "Piénsalo otra vez 👉👈",
+            "¿De verdad? 😭",
+            "No me hagas esto 🥺",
+            "Última oportunidad 😭💗"
+        ];
+
+        const sadImages = [
+            "./imagenes/hello2.jpg",
+            "./imagenes/hello3.jpg",
+            "./imagenes/hello4.jpg",
+            "./imagenes/hello5.jpg"
+        ];
+
+        let noCount = 0;
+
+        noBtn.addEventListener("click", () => {
+
+            if (noCount < noMessages.length) {
+                noBtn.textContent = noMessages[noCount];
+            }
+
+            if (noCount < sadImages.length) {
+                gifContainerImg.src = sadImages[noCount];
+            }
+
+            noCount++;
+
+            const currentSize = parseFloat(
+                window.getComputedStyle(siBtn).fontSize
+            );
+
+            siBtn.style.fontSize = (currentSize + 4) + "px";
+            siBtn.style.padding = "14px 28px";
+        });
+
+        siBtn.addEventListener("click", () => {
+
+            pregunta.style.display = "none";
+            noBtn.style.display = "none";
+            siBtn.style.display = "none";
+
+            gifContainerImg.style.display = "none";
+            mensajeFinal.style.display = "block";
+        });
+    </script>
+
+</body>
+</html>

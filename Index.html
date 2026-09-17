@@ -1,0 +1,451 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para ti 💌</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="loader">
+        <div class="loader-icon">💌</div>
+
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <div id="progress-percentage">0%</div>
+    </div>
+
+    <main class="main-content">
+
+        <h1>Para ti 💗</h1>
+
+        <div class="contenedor">
+
+            <div class="envoltura-sobre">
+
+                <div class="sobre"></div>
+
+                <div class="solapa solapa-superior"></div>
+                <div class="solapa solapa-derecha"></div>
+                <div class="solapa solapa-izquierda"></div>
+
+                <div class="corazon"></div>
+
+                <div class="carta">
+
+                    <div class="contenido">
+
+                        <span class="fecha">
+                            Para la persona que se volvió mi lugar seguro
+                        </span>
+
+                        <p class="saludo">
+                            Mi niña,
+                        </p>
+
+                        <p class="cuerpo">
+                            Sé que empezamos mal, siendo amigos con derechos. Nos separamos un tiempo, literalmente medio año, el cual me sirvió para reflexionar y entender que no sería tan mala idea darnos una oportunidad.
+                        </p>
+
+                        <p class="cuerpo">
+                            Y creo que fue la mejor idea que he tenido, ya que eres una mujer muy especial por tu forma de ser, de pensar y de amar. Y mejor aún, nuestro sentimiento es mutuo.
+                        </p>
+
+                        <p class="cuerpo">
+                            Eso hizo que te volvieras mi lugar seguro, ese lugar al que puedo llegar para desahogarme, para ser yo mismo sin sentirme juzgado y donde quiero caer rendido todos los días.
+                        </p>
+
+                        <p class="cuerpo">
+                            Te has convertido en la única persona especial en mi vida que quiero a mi lado para toda la vida.
+                        </p>
+
+                        <p class="cuerpo">
+                            Así que quiero formalizar las cosas contigo y que hoy sea nuestro aniversario oficial.
+                        </p>
+
+                        <div class="boton-container">
+
+                            <a href="./propuesta.html" class="boton-carta">
+                                Tengo algo que preguntarte 💗
+                            </a>
+
+                        </div>
+
+                        <div class="bloque-firma">
+
+                            <p class="firma">
+                                Con mucho cariño,<br>
+                                tu amor 💗
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <audio
+        id="sound"
+        src="https://dl.dropboxusercontent.com/scl/fi/esct592hxwzjyf9a2egpc/Si-supieras-lo-que-siento-con-mirarte....mp3?rlkey=xqbaohnpyd7b3mejkvvdg6dlq&st=2vagx61x&dl=1"
+        type="audio/mpeg"
+        preload="auto">
+    </audio>
+
+    <script>
+
+        window.addEventListener('load', () => {
+
+            const loader = document.getElementById('loader');
+            const progressBar = document.getElementById('progress-bar');
+            const percentageText = document.getElementById('progress-percentage');
+
+            let progress = 0;
+
+            const intervalo = setInterval(() => {
+
+                progress += 5;
+
+                if (progress >= 100) {
+
+                    progress = 100;
+
+                    clearInterval(intervalo);
+
+                    progressBar.style.width = '100%';
+                    percentageText.textContent = '100%';
+
+                    setTimeout(() => {
+                        loader.classList.add('hidden');
+                    }, 500);
+                }
+
+                progressBar.style.width = progress + '%';
+                percentageText.textContent = progress + '%';
+
+            }, 30);
+
+        });
+
+
+        function initializeLetter() {
+
+            const envoltura = document.querySelector(".envoltura-sobre");
+            const carta = document.querySelector(".carta");
+            const sonido = document.getElementById("sound");
+
+            let isAnimating = false;
+            let cartaAbierta = false;
+
+            const esMovil = window.innerWidth <= 768;
+
+
+            function gestionarAnimacion(accion) {
+
+                if (isAnimating) return;
+
+                isAnimating = true;
+
+
+                if (accion === 'abrir') {
+
+                    envoltura.classList.add('abierto');
+
+                    if (sonido) {
+                        sonido.play().catch(() => {
+                            console.log("La reproducción automática fue bloqueada.");
+                        });
+                    }
+
+                    if (esMovil) {
+
+                        setTimeout(() => {
+
+                            carta.style.top = '15px';
+                            carta.style.transform = 'translateX(-50%)';
+                            carta.style.width = '95vw';
+                            carta.style.height = 'calc(100vh - 30px)';
+
+                        }, 1700);
+
+                    }
+
+                    carta.addEventListener('animationend', () => {
+
+                        isAnimating = false;
+                        cartaAbierta = true;
+
+                    }, { once: true });
+
+
+                    setTimeout(crearCorazones, 800);
+
+                }
+
+
+                else if (accion === 'cerrar') {
+
+                    carta.style.top = '';
+                    carta.style.transform = '';
+                    carta.style.width = '';
+                    carta.style.height = '';
+
+                    void carta.offsetWidth;
+
+                    envoltura.classList.add('cerrando');
+
+                    if (sonido) {
+
+                        sonido.pause();
+                        sonido.currentTime = 0;
+
+                    }
+
+                    carta.addEventListener('animationend', () => {
+
+                        envoltura.classList.remove('abierto', 'cerrando');
+
+                        isAnimating = false;
+                        cartaAbierta = false;
+
+                    }, { once: true });
+
+                }
+
+            }
+
+
+            document.addEventListener('click', (e) => {
+
+                if (isAnimating) return;
+
+                const clickEnSobre =
+                    e.target.closest('.envoltura-sobre');
+
+                const clickEnCarta =
+                    e.target.closest('.carta');
+
+                const clickEnBoton =
+                    e.target.closest('.boton-carta');
+
+
+                if (clickEnBoton) {
+
+                    e.stopPropagation();
+                    return;
+
+                }
+
+
+                if (!cartaAbierta) {
+
+                    if (
+                        clickEnSobre &&
+                        !clickEnSobre.classList.contains('abierto')
+                    ) {
+
+                        gestionarAnimacion('abrir');
+
+                    }
+
+                }
+
+                else {
+
+                    if (
+                        (esMovil && clickEnCarta) ||
+                        !clickEnCarta
+                    ) {
+
+                        gestionarAnimacion('cerrar');
+
+                    }
+
+                }
+
+            });
+
+
+            function crearCorazones() {
+
+                if (
+                    !envoltura.classList.contains('abierto') ||
+                    envoltura.classList.contains('cerrando')
+                ) {
+                    return;
+                }
+
+
+                const contenedor = document.body;
+
+                const cantidad = 30;
+
+                const emojis = [
+                    '❤️',
+                    '💖',
+                    '💕',
+                    '💗',
+                    '💓',
+                    '💞',
+                    '🌸'
+                ];
+
+
+                const sobreRect =
+                    envoltura.getBoundingClientRect();
+
+                const startX =
+                    sobreRect.left +
+                    sobreRect.width / 2;
+
+                const startY =
+                    sobreRect.top +
+                    sobreRect.height / 2;
+
+
+                for (let i = 0; i < cantidad; i++) {
+
+                    setTimeout(() => {
+
+                        if (!cartaAbierta) return;
+
+
+                        const corazon =
+                            document.createElement('div');
+
+                        corazon.className =
+                            'corazon-magico';
+
+                        corazon.innerHTML =
+                            emojis[i % emojis.length];
+
+
+                        corazon.style.left =
+                            `${startX}px`;
+
+                        corazon.style.top =
+                            `${startY}px`;
+
+
+                        const duracion =
+                            Math.random() * 2 + 3;
+
+                        const fontSize =
+                            Math.random() * 15 + 15;
+
+                        const xEnd =
+                            (Math.random() - 0.5) *
+                            window.innerWidth * 1.2;
+
+                        const yEnd =
+                            (Math.random() - 0.5) *
+                            window.innerHeight * 1.2;
+
+                        const scaleEnd =
+                            Math.random() * 0.5 + 0.25;
+
+                        const rotationEnd =
+                            (Math.random() - 0.5) * 720;
+
+                        const xMid =
+                            (Math.random() - 0.5) * 200;
+
+                        const yMid =
+                            (Math.random() - 0.5) * 200;
+
+                        const rotationMid =
+                            (Math.random() - 0.5) * 360;
+
+
+                        corazon.style.setProperty(
+                            '--dur',
+                            `${duracion}s`
+                        );
+
+                        corazon.style.setProperty(
+                            '--fs',
+                            `${fontSize}px`
+                        );
+
+                        corazon.style.setProperty(
+                            '--x-end',
+                            `${xEnd}px`
+                        );
+
+                        corazon.style.setProperty(
+                            '--y-end',
+                            `${yEnd}px`
+                        );
+
+                        corazon.style.setProperty(
+                            '--s-end',
+                            scaleEnd
+                        );
+
+                        corazon.style.setProperty(
+                            '--r-end',
+                            `${rotationEnd}deg`
+                        );
+
+                        corazon.style.setProperty(
+                            '--x-mid',
+                            `${xMid}px`
+                        );
+
+                        corazon.style.setProperty(
+                            '--y-mid',
+                            `${yMid}px`
+                        );
+
+                        corazon.style.setProperty(
+                            '--r-mid',
+                            `${rotationMid}deg`
+                        );
+
+
+                        contenedor.appendChild(corazon);
+
+
+                        setTimeout(
+                            () => corazon.remove(),
+                            duracion * 1000
+                        );
+
+                    }, i * 50);
+
+                }
+
+            }
+
+        }
+
+
+        window.addEventListener('load', () => {
+
+            setTimeout(() => {
+                initializeLetter();
+            }, 800);
+
+        });
+
+    </script>
+
+</body>
+</html>
+```
