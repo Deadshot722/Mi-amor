@@ -1103,15 +1103,15 @@ body {
 
 .imagen-hello-kitty {
 
-    width: min(300px, 65vw);
+    width: min(200px, 65vw);
 
-    height: 180px;
+    height: 100px;
 
     object-fit: contain;
 
     display: block;
 
-    margin: 15px auto 0;
+    margin: 150px auto 0;
 
     border-radius: 25px;
 
