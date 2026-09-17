@@ -18,25 +18,20 @@
 
     <div class="container-propuesta">
 
-        <!-- IMAGEN DE LA PREGUNTA -->
         <div id="gifContainer">
 
             <img
                 id="gifContainerImg"
-                src="imágenes/hello1.jpg"
+                src="imagenes/hello1.jpg"
                 alt="Hello Kitty"
             >
 
         </div>
 
-
-        <!-- PREGUNTA -->
-        <h1>
+        <h1 id="question">
             ¿Quieres ser mi novia? ❤️
         </h1>
 
-
-        <!-- BOTONES -->
         <div class="botones">
 
             <button
@@ -57,23 +52,58 @@
 
     <script>
 
-        const noBtn = document.getElementById("noBtn");
-        const gif = document.getElementById("gifContainerImg");
+        const gifContainer =
+            document.getElementById("gifContainer");
+
+        const gif =
+            document.getElementById("gifContainerImg");
+
+        const question =
+            document.getElementById("question");
+
+        const siBtn =
+            document.getElementById("siBtn");
+
+        const noBtn =
+            document.getElementById("noBtn");
+
 
         let contador = 0;
 
+
         const imagenes = [
-            "imágenes/hello1.jpg",
-            "imágenes/hello2.jpg",
-            "imágenes/hello3.jpg",
-            "imágenes/hello4.jpg",
-            "imágenes/hello5.jpg",
-            "imágenes/hello6.jpg"
+
+            "imagenes/hello1.jpg",
+            "imagenes/hello2.jpg",
+            "imagenes/hello3.jpg",
+            "imagenes/hello4.jpg",
+            "imagenes/hello5.jpg",
+            "imagenes/hello6.jpg"
+
         ];
+
+
+        const mensajes = [
+
+            "¿Segura? 🥺",
+
+            "¿De verdad no quieres? 💔",
+
+            "Piénsalo otra vez 🥺",
+
+            "¿Ni siquiera lo vas a intentar? 😭",
+
+            "Por favor, mi niña ❤️",
+
+            "Ya sabes que quiero estar contigo ❤️"
+
+        ];
+
 
         noBtn.addEventListener("click", function () {
 
             contador++;
+
 
             if (contador < imagenes.length) {
 
@@ -81,7 +111,39 @@
 
             } else {
 
-                gif.src = imagenes[imagenes.length - 1];
+                gif.src =
+                    imagenes[imagenes.length - 1];
+
+            }
+
+
+            if (contador <= mensajes.length) {
+
+                question.textContent =
+                    mensajes[contador - 1];
+
+            }
+
+
+            const crecimiento =
+                Math.min(contador, 6);
+
+
+            siBtn.style.fontSize =
+                (18 + crecimiento * 5) + "px";
+
+
+            siBtn.style.padding =
+                (12 + crecimiento * 4) +
+                "px " +
+                (25 + crecimiento * 6) +
+                "px";
+
+
+            if (contador >= 6) {
+
+                noBtn.textContent =
+                    "No tienes escapatoria 😭";
 
             }
 
