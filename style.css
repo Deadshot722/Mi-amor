@@ -1103,9 +1103,9 @@ body {
 
 .imagen-hello-kitty {
 
-    width: min(300px, 65vw);
+    width: min(200px, 65vw);
 
-    height: 180px;
+    height: 100px;
 
     object-fit: contain;
 
