@@ -918,6 +918,7 @@ body {
 
 }
 
+
 /* ================================================= */
 /* PÁGINA DE LA PROPUESTA */
 /* ================================================= */
@@ -939,6 +940,7 @@ body {
     align-items: center;
 
     background:
+
         linear-gradient(
             135deg,
             #ffe6ee,
@@ -947,7 +949,7 @@ body {
 
     font-family: Arial, sans-serif;
 
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 
@@ -960,14 +962,8 @@ body {
     max-width: 700px;
 
     position: relative;
-
-    padding: 20px 0;
 }
 
-
-/* ============================= */
-/* IMAGEN PRINCIPAL DE PROPUESTA */
-/* ============================= */
 
 #gifContainer {
 
@@ -977,17 +973,17 @@ body {
 
     align-items: center;
 
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 
 #gifContainerImg {
 
-    width: min(320px, 65vw);
+    width: min(420px, 80vw);
 
-    height: 180px;
+    height: 280px;
 
-    object-fit: contain;
+    object-fit: cover;
 
     border-radius: 25px;
 
@@ -996,10 +992,6 @@ body {
         rgba(0,0,0,0.2);
 }
 
-
-/* ============================= */
-/* PREGUNTA */
-/* ============================= */
 
 .container-propuesta h1 {
 
@@ -1015,17 +1007,13 @@ body {
 
     color: #e94f75;
 
-    margin: 15px 0;
+    margin: 20px 0;
 
     text-shadow:
         2px 2px 5px
         rgba(0,0,0,0.15);
 }
 
-
-/* ============================= */
-/* BOTONES */
-/* ============================= */
 
 .botones {
 
@@ -1039,7 +1027,7 @@ body {
 
     gap: 10px;
 
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 
@@ -1097,21 +1085,17 @@ body {
 }
 
 
-/* ============================= */
-/* IMAGEN HELLO KITTY INFERIOR */
-/* ============================= */
-
 .imagen-hello-kitty {
 
-    width: min(200px, 65vw);
+    width: min(400px, 80vw);
 
-    height: 100px;
+    max-height: 300px;
 
-    object-fit: contain;
+    object-fit: cover;
 
     display: block;
 
-    margin: 15px auto 0;
+    margin: 0 auto 20px;
 
     border-radius: 25px;
 
@@ -1122,56 +1106,188 @@ body {
 
 
 /* ============================= */
+/* MENSAJE FINAL */
+/* ============================= */
+
+.bg-rosa {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd5e1,
+            #ffb6c9
+        );
+}
+
+
+.mensaje-final {
+
+    padding: 20px;
+
+    animation:
+        aparecer 0.8s ease;
+}
+
+
+.mensaje-final h2 {
+
+    font-family:
+        var(--fuente-titulo);
+
+    color: #d83d69;
+
+    font-size:
+        clamp(
+            2.5rem,
+            8vw,
+            4.5rem
+        );
+
+    margin: 10px;
+}
+
+
+.mensaje-final p {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 1.5rem;
+
+    color: #555;
+}
+
+
+.corazones-finales {
+
+    font-size: 35px;
+
+    animation:
+        latido-loader 1s infinite;
+}
+
+
+.hello-final {
+
+    width: min(350px, 75vw);
+
+    height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    margin-top: 15px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.2);
+}
+
+
+@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.8);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+}
+
+
+/* ============================= */
 /* CELULAR */
 /* ============================= */
 
 @media (max-width: 768px) {
 
-    .pagina-propuesta {
+    .main-content {
 
-        padding: 10px;
-
-        align-items: flex-start;
-
-        overflow-y: auto;
+        transform:
+            translateY(-5vh);
     }
 
 
-    .container-propuesta {
+    .main-content h1 {
 
-        padding-top: 20px;
+        font-size: 2.9rem;
     }
 
 
-    #gifContainer {
+    .envoltura-sobre {
 
-        margin-bottom: 5px;
+        width: 280px;
+
+        height: 193px;
+    }
+
+
+    .contenido {
+
+        padding-right: 5px;
+    }
+
+
+    .contenido .saludo {
+
+        font-size: 1.6rem;
+    }
+
+
+    .contenido .cuerpo {
+
+        font-size: 1.1rem;
+
+        line-height: 1.4;
+    }
+
+
+    .contenido .firma {
+
+        font-size: 1.6rem;
+
+        text-align: center;
+    }
+
+
+    .boton-carta {
+
+        font-size: 0.95rem;
+
+        padding:
+            12px 18px;
     }
 
 
     #gifContainerImg {
 
-        width: 75vw;
+        width: 85vw;
 
-        height: 150px;
-
-        object-fit: contain;
+        height: 230px;
     }
 
 
     .container-propuesta h1 {
 
-        font-size: 2.7rem;
-
-        margin: 10px 0;
+        font-size: 3rem;
     }
 
 
     .botones {
 
         gap: 5px;
-
-        margin-top: 10px;
     }
 
 
@@ -1183,15 +1299,5 @@ body {
             10px 20px;
     }
 
-
-    .imagen-hello-kitty {
-
-        width: 70vw;
-
-        height: 150px;
-
-        object-fit: contain;
-
-        margin-top: 10px;
-    }
 }
+
